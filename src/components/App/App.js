@@ -1,4 +1,5 @@
 import React from 'react';
+import config from 'src/config';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Global } from '@emotion/react';
@@ -8,9 +9,10 @@ import IndividualGameStats from 'src/components/IndividualGameStats';
 import { normalize, fonts } from 'src/styles';
 import * as Styles from './styles';
 
+console.log(config);
+
 const client = new ApolloClient({
-  // uri: 'https://ut6r8etige.execute-api.us-east-1.amazonaws.com/dev/graphql',
-  uri: 'http://localhost:3000/dev/graphql',
+  uri: config.apiBaseUrl,
   cache: new InMemoryCache()
 });
 
