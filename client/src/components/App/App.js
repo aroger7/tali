@@ -9,8 +9,8 @@ import { normalize, fonts } from 'src/styles';
 import * as Styles from './styles';
 
 const client = new ApolloClient({
-  uri: 'https://ut6r8etige.execute-api.us-east-1.amazonaws.com/dev/graphql',
-  // uri: 'http://localhost:3000/dev/graphql',
+  // uri: 'https://ut6r8etige.execute-api.us-east-1.amazonaws.com/dev/graphql',
+  uri: 'http://localhost:3000/dev/graphql',
   cache: new InMemoryCache()
 });
 

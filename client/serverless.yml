@@ -3,6 +3,8 @@ name: tally-client
 component: website
 org: aroger7
 
+useDotenv: true
+
 provider:
   name: aws
   iamRoleStatements:

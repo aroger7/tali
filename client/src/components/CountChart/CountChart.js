@@ -45,10 +45,19 @@ const tickModeHelpers = {
     format: 'MMM d'
   },
   [tickModes.monthly]: {
-    validator: (startDate, endDate) => differenceInMonths(endDate, startDate) <= 12
+    validator: (startDate, endDate) => differenceInMonths(endDate, startDate) <= 12,
+    getTicks: (startDate, endDate) => Array.from({
+      length: differenceInMonths(startOfMonth(endDate), startOfMonth(startDate))
+    })
+      .map((_, index) => subMonths(startOfMonth(endDate), index)),
+    format: 'MMM d'
   },
   [tickModes.bimonthly]: {
-    validator: (startDate, endDate) => differenceInYears(endDate, startDate) <= 2
+    validator: (startDate, endDate) => differenceInYears(endDate, startDate) <= 2,
+    getTicks: (startDate, endDate) => Array.from({
+      length: Math.ceil((differenceInMonths(startOfMonth(endDate), startOfMonth(startDate))) / 2)
+    })
+      .map((_, index) => subMonths(startOfMonth(endDate), index * 2))
   },
   [tickModes.yearly]: {
     validator: (startDate, endDate) => differenceInYears(endDate, startDate) > 2

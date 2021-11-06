@@ -27,15 +27,19 @@ const CountTimelineChart = ({ hiResCounts, dailyCounts, displayName, id }) => {
       })) ?? [];
 
 
-      return {
-        [id]: {
-          displayName,
-          points: [
-            ...dailyChartData?.filter(({ time }) => time < mappedHiResCounts[0]?.time),
-            ...mappedHiResCounts
-          ]
-        }
-      };
+    return {
+      [id]: {
+        displayName,
+        points: [
+          ...(
+            mappedHiResCounts?.length > 0 
+              ? dailyChartData?.filter(({ time }) => time < mappedHiResCounts[0]?.time)
+              : dailyChartData
+            ),
+          ...mappedHiResCounts
+        ]
+      }
+    };
   }, [hiResCounts, dailyChartData, displayName, id]);
 
   const [startDate, setStartDate] = useState(new Date());
